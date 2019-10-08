@@ -207,6 +207,9 @@ color_color_plotting.plt_colour_color('/data/var_analysis/Plots/color-color-yr2.
 color_color_plotting.plt_colour_curve('/data/var_analysis/Plots/color-curve-yr2.png', 'alpha_low_yr2', 'quad_curve_yr2', 'quad_curve_error_yr2<=0.3', norm_pop_yr2, gps_pop_yr2, hh_pop_yr2, hs_pop_yr2, ls_pop_yr2, lh_pop_yr2)
 plt.clf()
 
+
+
+# Setting up for plotting SEDs 
 data_dir = '/data/var_analysis/analysis'
 save_dir = '/data/var_analysis/Plots/SEDs/'
 name, ra_deg, dec_deg, flux_yr1, flux_err_yr1, flux_mwa_yr1, flux_mwa_err_yr1, flux_low_yr1, flux_err_low_yr1, flux_high_yr1, flux_err_high_yr1, S_white_yr1, local_rms_yr1, flux_xtra, flux_xtra_err, flux_gleam, flux_gleam_err = reading.read_variables(data_dir+'/norm_pop_yr1.fits','_yr1', 1)
@@ -249,6 +252,7 @@ quad_gleam_params_yr1 = np.stack((norm_quad_yr1_plt, alpha_quad_yr1_plt, quad_cu
 quad_gleam_params_yr2 = np.stack((norm_quad_yr2_plt, alpha_quad_yr2_plt, quad_curve_yr2_plt))
 
 
+# Plotting the SEDs but only plotting in the nice region with large variability 
 
 for i in range(len(name)):
 	if gps_id[i] == 1 and var_param[i] <= 20:
