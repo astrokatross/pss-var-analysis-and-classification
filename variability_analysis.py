@@ -1,4 +1,5 @@
-# This script is to analyse the sources and determine variability. 
+#!/usr/bin/python
+# This script is to analyse the sources and find/define any variability. 
 # By K.Ross 30/8/19
 
 import numpy as np
@@ -111,7 +112,8 @@ norm_pop_yr2 =pd.read_csv('/data/var_analysis/analysis/norm_pop_yr2.csv')
 
 var_param_norm = norm_pop_yr2['var_param']
 var_param_gps = norm_pop_yr2.query('gps_id==1')['var_param']
-# color_color_plotting.plt_var_hist('/data/var_analysis/Plots/var_param_hist.pdf', var_param_norm, var_param_gps)
+
+color_color_plotting.plt_var_hist('/data/var_analysis/Plots/var_param_hist.pdf', var_param_norm, var_param_gps)
 
 
 
@@ -159,8 +161,8 @@ powlaw_conds_yr1 = 'quad_curve_yr1>-0.2 &  alpha_low_yr1<0.1 & alpha_high_yr1 <=
 powlaw_pop_yr1 =  norm_pop_yr1[~norm_pop_yr1['Name'].isin(gps_pop_yr1['Name'])&~norm_pop_yr1['Name'].isin(hh_pop_yr1['Name'])&~norm_pop_yr1['Name'].isin(hs_pop_yr1['Name'])&~norm_pop_yr1['Name'].isin(ls_pop_yr1['Name'])&~norm_pop_yr1['Name'].isin(lh_pop_yr1['Name'])&~norm_pop_yr1['Name'].isin(flat_pop_yr1['Name'])]
 print("Powlaw in Year1: " + str(len(powlaw_pop_yr1)))
 
-# color_color_plotting.plt_colour_color('/data/var_analysis/Plots/color-color-yr1.png', 'alpha_low_yr1', 'alpha_high_yr1', norm_pop_yr1, gps_pop_yr1, hh_pop_yr1, hs_pop_yr1, ls_pop_yr1, lh_pop_yr1)
-# color_color_plotting.plt_colour_curve('/data/var_analysis/Plots/color-curve-yr1.png', 'alpha_low_yr1', 'quad_curve_yr1', 'quad_curve_error_yr1<=0.3', norm_pop_yr1, gps_pop_yr1, hh_pop_yr1, hs_pop_yr1, ls_pop_yr1, lh_pop_yr1)
+color_color_plotting.plt_colour_color('/data/var_analysis/Plots/color-color-yr1.png', 'alpha_low_yr1', 'alpha_high_yr1', norm_pop_yr1, gps_pop_yr1, hh_pop_yr1, hs_pop_yr1, ls_pop_yr1, lh_pop_yr1)
+color_color_plotting.plt_colour_curve('/data/var_analysis/Plots/color-curve-yr1.png', 'alpha_low_yr1', 'quad_curve_yr1', 'quad_curve_error_yr1<=0.3', norm_pop_yr1, gps_pop_yr1, hh_pop_yr1, hs_pop_yr1, ls_pop_yr1, lh_pop_yr1)
 
 
 
@@ -199,23 +201,11 @@ lh_pop_yr2 = norm_pop_yr2.query(lh_conds_yr2)
 print("LH in Year2: "+ str(len(lh_pop_yr2)))
 lh_csv = lh_pop_yr2.to_csv(save_dir+'lh_pop_yr2.csv', index=None, header=True)
 
-# # STEP KAT: Classifying powlaw and flat 
-# flat_conds_yr2 = 'alpha_low_yr2 <0.2 & alpha_low_yr2 >=-0.2 &(alpha_low_yr2 - alpha_low_error_yr2 <= 0.1) & quad_curve_yr2>=-0.2'
-# flat_pop_yr2 = norm_pop_yr2.query(flat_conds_yr2)
-# print("Flat in Year2: "+ str(len(flat_pop_yr2)))
-
-# powlaw_conds_yr2 = 'quad_curve_yr2>-0.2 &  alpha_low_yr2<0.1 & alpha_high_yr2 <=-0.5 &(alpha_low_yr2 - alpha_low_error_yr2 <= 0.1) '
-# powlaw_pop_yr2 =  norm_pop_yr2[~norm_pop_yr2['Name'].isin(gps_pop_yr2['Name'])&~norm_pop_yr2['Name'].isin(hh_pop_yr2['Name'])&~norm_pop_yr2['Name'].isin(hs_pop_yr2['Name'])&~norm_pop_yr2['Name'].isin(ls_pop_yr2['Name'])&~norm_pop_yr2['Name'].isin(lh_pop_yr2['Name'])&~norm_pop_yr2['Name'].isin(flat_pop_yr2['Name'])]
-# print("Powlaw in Year2: " + str(len(powlaw_pop_yr2)))
 
 
-
-
-
-
-# color_color_plotting.plt_colour_color('/data/var_analysis/Plots/color-color-yr2.png', 'alpha_low_yr2', 'alpha_high_yr2', norm_pop_yr2, gps_pop_yr2, hh_pop_yr2, hs_pop_yr2, ls_pop_yr2, lh_pop_yr2)
-# color_color_plotting.plt_colour_curve('/data/var_analysis/Plots/color-curve-yr2.png', 'alpha_low_yr2', 'quad_curve_yr2', 'quad_curve_error_yr2<=0.3', norm_pop_yr2, gps_pop_yr2, hh_pop_yr2, hs_pop_yr2, ls_pop_yr2, lh_pop_yr2)
-# plt.clf()
+color_color_plotting.plt_colour_color('/data/var_analysis/Plots/color-color-yr2.png', 'alpha_low_yr2', 'alpha_high_yr2', norm_pop_yr2, gps_pop_yr2, hh_pop_yr2, hs_pop_yr2, ls_pop_yr2, lh_pop_yr2)
+color_color_plotting.plt_colour_curve('/data/var_analysis/Plots/color-curve-yr2.png', 'alpha_low_yr2', 'quad_curve_yr2', 'quad_curve_error_yr2<=0.3', norm_pop_yr2, gps_pop_yr2, hh_pop_yr2, hs_pop_yr2, ls_pop_yr2, lh_pop_yr2)
+plt.clf()
 
 data_dir = '/data/var_analysis/analysis'
 save_dir = '/data/var_analysis/Plots/SEDs/'
